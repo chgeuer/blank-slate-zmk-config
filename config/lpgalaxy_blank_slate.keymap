@@ -29,12 +29,19 @@
     chosen {
        zmk,matrix_transform = &ortho_transform;     // or should it be &default_transform;?
     };
+};
 
+/ {
    conditional_layers { // https://zmk.dev/docs/features/conditional-layers
         compatible = "zmk,conditional-layers";
-        tri_layer { if-layers = <LOWER RAISE>; then-layer = <ADJUST>; };
+        tri_layer { 
+            if-layers = <LOWER RAISE>; 
+            then-layer = <ADJUST>; 
+        };
     };
- 
+};
+
+/ { 
     macros {
         ZMK_MACRO(thumbs_up,
             wait-ms = <1>;
@@ -46,22 +53,19 @@
             label = "ZM_backtick";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings
-                = <&macro_press   &kp LSHFT>
-                , <&macro_tap     &kp DE_ACUT>
-                , <&macro_release &kp LSHFT>
-                , <&macro_tap     &kp SPACE>
-                ;
+            bindings = <&macro_press &kp LSHFT>, <&macro_tap &kp DE_ACUT>, <&macro_release &kp LSHFT>, <&macro_tap &kp SPACE>;
         };
     };
+};
 
+/ {
     tap_dances {
     	shifty: shift_caps_word {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_SHIFTY";
-            #binding-cells = <0>;
+            compatible      = "zmk,behavior-tap-dance";
+            label           = "TD_SHIFTY";
+            #binding-cells  = <0>;
             tapping-term-ms = <150>;
-            bindings = <&kp LSHFT>, <&caps_word>;
+            bindings        = <&kp LSHFT>, <&caps_word>;
         };
 	};
 };
