@@ -28,18 +28,14 @@
        zmk,matrix_transform = &ortho_transform;     // or should it be &default_transform;?
     };
 
-//
-//  / {
-//     conditional_layers { // https://zmk.dev/docs/features/conditional-layers
-//          compatible = "zmk,conditional-layers";
-//          tri_layer { 
-//              if-layers = <LOWER RAISE>; 
-//              then-layer = <ADJUST>; 
-//          };
-//      };
-//  };
-// 
-// / {
+    conditional_layers { // https://zmk.dev/docs/features/conditional-layers
+        compatible = "zmk,conditional-layers";
+        tri_layer { 
+            if-layers = <LOWER RAISE>; 
+            then-layer = <ADJUST>; 
+        };
+    };
+
 //     behaviors {
 //         lh_pht: homerow_left {
 //             compatible = "zmk,behavior-hold-tap";
@@ -59,7 +55,6 @@
 //             flavor = "balanced"; tapping-term-ms = <400>;
 //         };
 //     };
-// };
 
     macros {
         // ZMK_MACRO(thumbs_up,
@@ -76,7 +71,6 @@
         };
     };
 
-
     tap_dances {
         shifty: shift_caps_word {
             compatible      = "zmk,behavior-tap-dance";
@@ -86,7 +80,6 @@
             bindings        = <&kp LSHFT>, <&caps_word>;
         }; 
     };
-
 
     keymap {
         compatible = "zmk,keymap";
