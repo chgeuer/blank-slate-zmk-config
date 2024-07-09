@@ -24,6 +24,19 @@
 #define BT3 BT_SEL 3
 #define BT4 BT_SEL 4
 
+
+
+#define LEFT_ROW_0       0  1  2  3  4  5
+#define LEFT_ROW_1      12 13 14 15 16 17
+#define LEFT_ROW_2      24 25 26 27 28 29
+#define LEFT_ROW_3      36 37 38 39 40 41
+#define RIGHT_ROW_0                         6  7  8  9 10 11
+#define RIGHT_ROW_1                        18 19 20 21 22 23
+#define RIGHT_ROW_2                        30 31 32 33 34 35
+#define RIGHT_ROW_3                        42 43 44 45 46 47
+#define LEFT_ROWS_012   LEFT_ROW_0 LEFT_ROW_1 LEFT_ROW_2
+#define RIGHT_ROWS_012  RIGHT_ROW_0 RIGHT_ROW_1 RIGHT_ROW_2
+
 // Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
 &lt { quick_tap_ms = <200>; };
 
@@ -44,15 +57,16 @@
         lh_pht: homerow_left {
             compatible = "zmk,behavior-hold-tap";
             label = "POSITIONAL_HOLD_TAPL";
-            // hold-trigger-key-positions = <RIGT_ROWS_012 41>;
+            hold-trigger-key-positions = <RIGHT_ROWS_012 43>;
             hold-trigger-on-release; // https://github.com/zmkfirmware/zmk/pull/1423
             #binding-cells = <2>; bindings = <&kp>, <&kp>;
             flavor = "balanced"; tapping-term-ms = <400>;
         };
+
         rh_pht: homerow_right {
             compatible = "zmk,behavior-hold-tap";
             label = "POSITIONAL_HOLD_TAPR";
-            // hold-trigger-key-positions = <LEFT_ROWS_012 36>;
+            hold-trigger-key-positions = <LEFT_ROWS_012 40>;
             hold-trigger-on-release;
             #binding-cells = <2>; bindings = <&kp>, <&kp>;
             //flavor = "hold-preferred"; quick-tap-ms = <200>; tapping-term-ms = <400>;
