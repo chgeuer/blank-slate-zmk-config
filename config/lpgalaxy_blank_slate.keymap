@@ -77,10 +77,10 @@
         default_layer {
             label = "DEFAULT";
             bindings = <
- &kp ESC         &kp DE_Q         &kp DE_W            &kp DE_F            &kp DE_P              &kp DE_B          &kp DE_J      &kp DE_L               &kp DE_U          &kp DE_Y          &kp DE_SS           &kp DE_PLUS
- &kp TAB         &kp DE_A         &kp DE_R            &kp DE_S            &kp DE_T              &kp DE_G          &kp DE_M      &kp DE_N               &kp DE_E          &kp DE_I          &kp DE_O            &kp DE_HASH
- &kp LSHFT       &kp DE_Z         &kp DE_X            &kp DE_C            &kp DE_D              &kp DE_V          &kp DE_K      &kp DE_H               &kp DE_COMM       &kp DE_DOT        &kp FSLH            &kp RET
- &none           &none            &none               &lt LOWER BSPC      &lt LOWER SPACE       &none             &to DEFAULT   &lt RAISE SPACE        &lt RAISE RE      &none             &none               &none
+ &kp ESC         &kp DE_Q         &kp DE_W            &kp DE_F            &kp DE_P              &kp DE_B          &kp DE_J      &kp DE_L               &kp DE_U              &kp DE_Y          &kp DE_SS           &kp DE_PLUS
+ &kp TAB         &kp DE_A         &kp DE_R            &kp DE_S            &kp DE_T              &kp DE_G          &kp DE_M      &kp DE_N               &kp DE_E              &kp DE_I          &kp DE_O            &kp DE_HASH
+ &kp LSHFT       &kp DE_Z         &kp DE_X            &kp DE_C            &kp DE_D              &kp DE_V          &kp DE_K      &kp DE_H               &kp DE_COMM           &kp DE_DOT        &kp FSLH            &kp RET
+ &none           &none            &none               &lt LOWER BSPC      &lt LOWER SPACE       &none             &to DEFAULT   &lt RAISE SPACE        &lt RAISE RETURN      &none             &none               &none
             >;
         };
 
