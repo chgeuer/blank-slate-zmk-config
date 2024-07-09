@@ -31,16 +31,23 @@
     };
 };
 
-/ {
-   conditional_layers { // https://zmk.dev/docs/features/conditional-layers
-        compatible = "zmk,conditional-layers";
-        tri_layer { 
-            if-layers = <LOWER RAISE>; 
-            then-layer = <ADJUST>; 
-        };
+//  / {
+//     conditional_layers { // https://zmk.dev/docs/features/conditional-layers
+//          compatible = "zmk,conditional-layers";
+//          tri_layer { 
+//              if-layers = <LOWER RAISE>; 
+//              then-layer = <ADJUST>; 
+//          };
+//      };
+//  };
+
+&conditional_layers {
+    compatible = "zmk,conditional-layers";
+    tri_layer { 
+        if-layers = <LOWER RAISE>; 
+        then-layer = <ADJUST>; 
     };
 };
-
 
 / {
     behaviors {
