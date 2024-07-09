@@ -93,7 +93,6 @@
             bindings = <
  &kp ESC         &kp DE_Q              &kp DE_W            &kp DE_F            &kp DE_P              &kp DE_B          &kp DE_J      &kp DE_L               &kp DE_U              &kp DE_Y          &kp DE_SS           &kp DE_PLUS
  &kp TAB         &lh_pht LALT DE_A     &lh_pht LGUI DE_R   &lh_pht LCTRL DE_S  &lh_pht LSHIFT DE_T   &kp DE_G          &kp DE_M      &rh_pht RSHIFT DE_N    &rh_pht RCTRL DE_E    &rh_pht RGUI DE_I &rh_pht LALT DE_O   &kp DE_HASH
- // &kp TAB         &lh_pht LALT DE_A     &kp DE_R            &kp DE_S            &kp DE_T              &kp DE_G          &kp DE_M      &kp DE_N               &kp DE_E              &kp DE_I          &kp DE_O            &kp DE_HASH
  &kp LSHFT       &kp DE_Z              &kp DE_X            &kp DE_C            &kp DE_D              &kp DE_V          &kp DE_K      &kp DE_H               &kp DE_COMM           &kp DE_DOT        &kp FSLH            &kp RET
  &none           &none                 &none               &lt LOWER BSPC      &lt LOWER SPACE       &none             &to DEFAULT   &lt RAISE SPACE        &lt RAISE RETURN      &none             &none               &none
             >;
@@ -113,8 +112,8 @@
             label = "RAISE";
             bindings = <
 &none            &kp N1           &kp N2              &kp N3              &kp N4                &kp N5            &kp N6      &kp N7                   &kp N8             &kp N9            &kp N0              &kp HOME
-//&none            &lh_pht LALT F1  &lh_pht LGUI F2     &lh_pht LCTRL F3    &lh_pht LSHIFT F4     &kp F5            &kp F6      &rh_pht RSHFT LEFT       &rh_pht RCTRL DOWN &rh_pht RGUI UP   &rh_pht LALT RIGHT  &none
-&none            &kp F1           &kp F2              &kp F3              &kp F4                &kp F5            &kp F6      &kp LEFT                 &kp DOWN           &kp UP            &kp RIGHT           &none
+&none            &lh_pht LALT F1  &lh_pht LGUI F2     &lh_pht LCTRL F3    &lh_pht LSHIFT F4     &kp F5            &kp F6      &rh_pht RSHFT LEFT       &rh_pht RCTRL DOWN &rh_pht RGUI UP   &rh_pht LALT RIGHT  &none
+//&none            &kp F1           &kp F2              &kp F3              &kp F4                &kp F5            &kp F6      &kp LEFT                 &kp DOWN           &kp UP            &kp RIGHT           &none
 &none            &kp F7           &kp F8              &kp F9              &kp F10               &kp F11           &kp F12     &none                    &none              &none             &none               &kp END
 &trans           &trans           &trans              &trans              &trans                &trans            &trans      &trans                   &trans             &trans            &trans              &trans
             >;
