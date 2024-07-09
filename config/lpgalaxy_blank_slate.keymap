@@ -27,8 +27,8 @@
     chosen {
        zmk,matrix_transform = &ortho_transform;     // or should it be &default_transform;?
     };
-};
 
+//
 //  / {
 //     conditional_layers { // https://zmk.dev/docs/features/conditional-layers
 //          compatible = "zmk,conditional-layers";
@@ -38,7 +38,7 @@
 //          };
 //      };
 //  };
-
+// 
 // / {
 //     behaviors {
 //         lh_pht: homerow_left {
@@ -61,37 +61,33 @@
 //     };
 // };
 
+    // macros {
+    //     // ZMK_MACRO(thumbs_up,
+    //     //     wait-ms = <1>;
+    //     //     tap-ms = <5>;
+    //     //     bindings = <&kp PLUS &kp COLON &kp PLUS &kp N1 &kp COLON &kp RET>;
+    //     //     );
+    // 
+    //     backtick: backtick { // instead of &kp DE_GRV
+    //         label = "ZM_backtick";
+    //         compatible = "zmk,behavior-macro";
+    //         #binding-cells = <0>;
+    //         bindings = <&macro_press &kp LSHFT>, <&macro_tap &kp DE_ACUT>, <&macro_release &kp LSHFT>, <&macro_tap &kp SPACE>;
+    //     };
+    // };
 
-// / { 
-//     macros {
-//         // ZMK_MACRO(thumbs_up,
-//         //     wait-ms = <1>;
-//         //     tap-ms = <5>;
-//         //     bindings = <&kp PLUS &kp COLON &kp PLUS &kp N1 &kp COLON &kp RET>;
-//         //     );
-// 
-//         backtick: backtick { // instead of &kp DE_GRV
-//             label = "ZM_backtick";
-//             compatible = "zmk,behavior-macro";
-//             #binding-cells = <0>;
-//             bindings = <&macro_press &kp LSHFT>, <&macro_tap &kp DE_ACUT>, <&macro_release &kp LSHFT>, <&macro_tap &kp SPACE>;
-//         };
-//     };
-// };
 
-// / {
-//     tap_dances {
-//     	shifty: shift_caps_word {
-//             compatible      = "zmk,behavior-tap-dance";
-//             label           = "TD_SHIFTY";
-//             #binding-cells  = <0>;
-//             tapping-term-ms = <150>;
-//             bindings        = <&kp LSHFT>, <&caps_word>;
-//         };
-// 	};
-// };
+    tap_dances {
+        shifty: shift_caps_word {
+            compatible      = "zmk,behavior-tap-dance";
+            label           = "TD_SHIFTY";
+            #binding-cells  = <0>;
+            tapping-term-ms = <150>;
+            bindings        = <&kp LSHFT>, <&caps_word>;
+        }; 
+    };
 
-/ {
+
     keymap {
         compatible = "zmk,keymap";
 
