@@ -20,10 +20,6 @@
 #define ADJUST  3
 
 
-#define NAV_L 1
-#define NUM_L 2
-#define SYM_L 3
-
 // Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
 &lt { quick_tap_ms = <200>; };
 
@@ -31,70 +27,87 @@
 
 / {
     chosen {
-       zmk,matrix_transform = &ortho_transform;
+       zmk,matrix_transform = &ortho_transform;     // or should it be &default_transform;?
     };
 
-    macros {
-      ZMK_MACRO(thumbs_up,
-		wait-ms = <1>;
-		tap-ms = <5>;
-        bindings = <&kp PLUS &kp COLON &kp PLUS &kp N1 &kp COLON &kp RET>;
-		)
+   conditional_layers { // https://zmk.dev/docs/features/conditional-layers
+        compatible = "zmk,conditional-layers";
+        tri_layer { if-layers = <LOWER RAISE>; then-layer = <ADJUST>; };
     };
-    
+ 
+    macros {
+        ZMK_MACRO(thumbs_up,
+            wait-ms = <1>;
+            tap-ms = <5>;
+            bindings = <&kp PLUS &kp COLON &kp PLUS &kp N1 &kp COLON &kp RET>;
+            );
+
+        backtick: backtick { // instead of &kp DE_GRV
+            label = "ZM_backtick";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press   &kp LSHFT>
+                , <&macro_tap     &kp DE_ACUT>
+                , <&macro_release &kp LSHFT>
+                , <&macro_tap     &kp SPACE>
+                ;
+        };
+    };
+
     tap_dances {
     	shifty: shift_caps_word {
-		compatible = "zmk,behavior-tap-dance";
-		label = "TD_SHIFTY";
-		#binding-cells = <0>;
-		tapping-term-ms = <150>;
-		bindings = <&kp LSHFT>, <&caps_word>;
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_SHIFTY";
+            #binding-cells = <0>;
+            tapping-term-ms = <150>;
+            bindings = <&kp LSHFT>, <&caps_word>;
+        };
 	};
-   };
+};
 
+/ {
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             label = "DEFAULT";
             bindings = <
- &kp ESC    &kp DE_Q       &kp DE_W      &kp DE_F       &kp DE_P          &kp DE_B          &kp DE_J            &kp DE_L          &kp DE_U          &kp DE_Y          &kp DE_SS        &kp DE_PLUS
- &kp TAB    &kp DE_A       &kp DE_R      &kp DE_S       &kp DE_T          &kp DE_G          &kp DE_M            &kp DE_N          &kp DE_E          &kp DE_I          &kp DE_O         &kp DE_HASH
- &kp LSHFT  &kp DE_Z       &kp DE_X      &kp DE_C       &kp DE_D          &kp DE_V          &kp DE_K            &kp DE_H          &kp DE_COMM       &kp DE_DOT        &kp FSLH         &kp RET
- &kp LCTRL  &mo SYM_L      &kp LGUI      &kp LALT       &mo NAV_L         &kp SPACE         &kp RET             &mo NUM_L         &kp LEFT          &kp UP            &kp DOWN         &kp RIGHT
+ &kp ESC         &kp DE_Q         &kp DE_W            &kp DE_F            &kp DE_P              &kp DE_B          &kp DE_J      &kp DE_L               &kp DE_U          &kp DE_Y          &kp DE_SS           &kp DE_PLUS
+ &kp TAB         &kp DE_A         &kp DE_R            &kp DE_S            &kp DE_T              &kp DE_G          &kp DE_M      &kp DE_N               &kp DE_E          &kp DE_I          &kp DE_O            &kp DE_HASH
+ &kp LSHFT       &kp DE_Z         &kp DE_X            &kp DE_C            &kp DE_D              &kp DE_V          &kp DE_K      &kp DE_H               &kp DE_COMM       &kp DE_DOT        &kp FSLH            &kp RET
+ &none           &none            &none               &lt LOWER BSPC      &lt LOWER SPACE       &none             &to DEFAULT   &lt RAISE SPACE        &lt RAISE RE      &none             &none               &none
             >;
         };
 
         lower_layer {
             label = "LOWER";
             bindings = <
-&bt BT_CLR     &trans     &trans     &trans      &trans          &trans       &trans     &trans         &trans      &trans     &trans     &kp DEL
-&trans         &trans     &trans     &trans      &trans          &trans       &trans     &kp LEFT       &kp DOWN    &kp UP     &kp RIGHT  &trans
-&trans         &bt BT(0)  &bt BT(1)  &bt BT(2)   &bt BT(3)       &bt BT(4)    &trans     &kp HOME       &kp PG_DN   &kp PG_UP  &kp END    &trans
-&trans         &trans     &trans     &trans      &trans          &trans       &trans     &trans         &trans      &trans     &trans     &trans
+&kp DE_CIRC      &kp DE_EXLM      &kp DE_DQUO         &kp DE_DLR          &kp DE_AMPR           &kp DE_PERC       &none       &kp DE_LPRN              &kp DE_RPRN        &kp DE_MINS       &kp DE_EQL          &kp DE_BSLS
+&kp DE_PIPE      &kp DE_AT        &kp DE_TILD         &kp DE_EURO         &none                 &none             &none       &kp DE_LCBR              &kp DE_RCBR        &kp DE_LBRC       &kp DE_RBRC         &kp DE_QUOT
+&none            &none            &kp DE_DEG          &kp DE_SECT         &none                 &none             &none       &kp DE_LABK              &kp DE_RABK        &kp DE_COLN       &kp DE_SLSH         &backtick
+&trans           &trans           &trans              &trans              &trans                &trans            &trans      &trans                   &trans             &trans            &trans              &trans
             >;
         };
 
         raise_layer {
             label = "RAISE";
             bindings = <
-&trans        &kp LBKT   &trans      &trans       &trans        &kp RBKT    &kp C_PREV    &kp N7     &kp N8      &kp N9       &trans     &trans
-&trans        &kp MINUS  &trans      &trans       &trans        &kp EQUAL   &kp C_NEXT    &kp N4     &kp N5      &kp N6       &trans     &trans
-&trans        &kp GRAVE  &trans      &trans       &trans        &kp BSLH    &trans        &kp N1     &kp N2      &kp N3       &trans     &trans
-&trans        &trans     &trans      &kp N0       &trans        &none       &none         &kp ESC    &kp DEL     &trans       &trans     &trans
+&none            &kp N1           &kp N2              &kp N3              &kp N4                &kp N5            &kp N6      &kp N7                   &kp N8             &kp N9            &kp N0              &kp HOME
+&none            &lh_pht LALT F1  &lh_pht LGUI F2     &lh_pht LCTRL F3    &lh_pht LSHIFT F4     &kp F5            &kp F6      &rh_pht RSHFT LEFT       &rh_pht RCTRL DOWN &rh_pht RGUI UP   &rh_pht LALT RIGHT  &none
+&none            &kp F7           &kp F8              &kp F9              &kp F10               &kp F11           &kp F12     &none                    &none              &none             &none               &kp END
+&trans           &trans           &trans              &trans              &trans                &trans            &trans      &trans                   &trans             &trans            &trans              &trans
             >;
         };
 
         adjust_layer {
             label = "ADJUST";
             bindings = <
-&trans     &kp LBRC   &kp AMPS   &kp STAR    &kp LPAR     &kp RBRC     &trans     &trans    &trans       &trans       &trans     &bootloader
-&trans     &kp COLON  &kp DLLR   &kp PRCNT   &kp CARET    &kp PLUS     &trans     &trans    &trans       &trans       &trans     &trans
-&trans     &kp TILDE  &kp EXCL   &kp AT      &kp HASH     &kp PIPE     &trans     &trans    &trans       &trans       &trans     &trans
-&trans     &trans     &trans     &kp RPAR    &trans       &trans       &trans     &trans    &trans       &trans       &trans     &trans
+&bt BT_CLR       &bt BT(0)        &bt BT(1)           &bt BT(2)           &bt BT(3)            &bt BT(4)          &none       &kp C_VOLUME_UP          &kp C_PREVIOUS     &kp C_NEXT        &none               &bootloader
+&out OUT_BLE     &none            &none               &none               &none                &none              &none       &kp C_VOLUME_DOWN        &kp C_PLAY_PAUSE   &none             &none               &none
+&kp LSHIFT       &none            &none               &none               &none                &none              &none       &kp DE_AE                &kp DE_OE          &kp DE_UE         &kp DE_SS           &none
+&trans           &trans           &trans              &kp RPAR            &trans               &trans             &trans      &trans                   &trans             &trans            &trans              &trans
             >;
         };
-
-
     };
 };
