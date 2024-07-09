@@ -41,34 +41,59 @@
     };
 };
 
-/ { 
-    macros {
-        // ZMK_MACRO(thumbs_up,
-        //     wait-ms = <1>;
-        //     tap-ms = <5>;
-        //     bindings = <&kp PLUS &kp COLON &kp PLUS &kp N1 &kp COLON &kp RET>;
-        //     );
 
-        backtick: backtick { // instead of &kp DE_GRV
-            label = "ZM_backtick";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp LSHFT>, <&macro_tap &kp DE_ACUT>, <&macro_release &kp LSHFT>, <&macro_tap &kp SPACE>;
+/ {
+    behaviors {
+        lh_pht: homerow_left {
+            compatible = "zmk,behavior-hold-tap";
+            label = "POSITIONAL_HOLD_TAP";
+            // hold-trigger-key-positions = <RIGT_ROWS_012 41>;
+            // hold-trigger-on-release; // https://github.com/zmkfirmware/zmk/pull/1423
+            #binding-cells = <2>; bindings = <&kp>, <&kp>;
+            flavor = "balanced"; tapping-term-ms = <400>;
+        };
+        rh_pht: homerow_right {
+            compatible = "zmk,behavior-hold-tap";
+            label = "POSITIONAL_HOLD_TAPR";
+            // hold-trigger-key-positions = <LEFT_ROWS_012 36>;
+            // hold-trigger-on-release;
+            #binding-cells = <2>; bindings = <&kp>, <&kp>;
+            //flavor = "hold-preferred"; quick-tap-ms = <200>; tapping-term-ms = <400>;
+            flavor = "balanced"; tapping-term-ms = <400>;
         };
     };
 };
 
-/ {
-    tap_dances {
-    	shifty: shift_caps_word {
-            compatible      = "zmk,behavior-tap-dance";
-            label           = "TD_SHIFTY";
-            #binding-cells  = <0>;
-            tapping-term-ms = <150>;
-            bindings        = <&kp LSHFT>, <&caps_word>;
-        };
-	};
-};
+
+
+// / { 
+//     macros {
+//         // ZMK_MACRO(thumbs_up,
+//         //     wait-ms = <1>;
+//         //     tap-ms = <5>;
+//         //     bindings = <&kp PLUS &kp COLON &kp PLUS &kp N1 &kp COLON &kp RET>;
+//         //     );
+// 
+//         backtick: backtick { // instead of &kp DE_GRV
+//             label = "ZM_backtick";
+//             compatible = "zmk,behavior-macro";
+//             #binding-cells = <0>;
+//             bindings = <&macro_press &kp LSHFT>, <&macro_tap &kp DE_ACUT>, <&macro_release &kp LSHFT>, <&macro_tap &kp SPACE>;
+//         };
+//     };
+// };
+
+// / {
+//     tap_dances {
+//     	shifty: shift_caps_word {
+//             compatible      = "zmk,behavior-tap-dance";
+//             label           = "TD_SHIFTY";
+//             #binding-cells  = <0>;
+//             tapping-term-ms = <150>;
+//             bindings        = <&kp LSHFT>, <&caps_word>;
+//         };
+// 	};
+// };
 
 / {
     keymap {
@@ -77,10 +102,10 @@
         default_layer {
             label = "DEFAULT";
             bindings = <
- &kp ESC         &kp DE_Q         &kp DE_W            &kp DE_F            &kp DE_P              &kp DE_B          &kp DE_J      &kp DE_L               &kp DE_U              &kp DE_Y          &kp DE_SS           &kp DE_PLUS
- &kp TAB         &kp DE_A         &kp DE_R            &kp DE_S            &kp DE_T              &kp DE_G          &kp DE_M      &kp DE_N               &kp DE_E              &kp DE_I          &kp DE_O            &kp DE_HASH
- &kp LSHFT       &kp DE_Z         &kp DE_X            &kp DE_C            &kp DE_D              &kp DE_V          &kp DE_K      &kp DE_H               &kp DE_COMM           &kp DE_DOT        &kp FSLH            &kp RET
- &none           &none            &none               &lt LOWER BSPC      &lt LOWER SPACE       &none             &to DEFAULT   &lt RAISE SPACE        &lt RAISE RETURN      &none             &none               &none
+ &kp ESC         &kp DE_Q              &kp DE_W            &kp DE_F            &kp DE_P              &kp DE_B          &kp DE_J      &kp DE_L               &kp DE_U              &kp DE_Y          &kp DE_SS           &kp DE_PLUS
+ &kp TAB         &lh_pht LALT DE_A     &lh_pht LGUI DE_R   &lh_pht LCTRL DE_S  &lh_pht LSHIFT DE_T   &kp DE_G          &kp DE_M      &rh_pht RSHIFT DE_N    &rh_pht RCTRL DE_E    &rh_pht RGUI DE_I &rh_pht LALT DE_O   &kp DE_HASH
+ &kp LSHFT       &kp DE_Z              &kp DE_X            &kp DE_C            &kp DE_D              &kp DE_V          &kp DE_K      &kp DE_H               &kp DE_COMM           &kp DE_DOT        &kp FSLH            &kp RET
+ &none           &none                 &none               &lt LOWER BSPC      &lt LOWER SPACE       &none             &to DEFAULT   &lt RAISE SPACE        &lt RAISE RETURN      &none             &none               &none
             >;
         };
 
