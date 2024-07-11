@@ -55,7 +55,7 @@
         lh_pht: homerow_left {
             compatible = "zmk,behavior-hold-tap";
             label = "POSITIONAL_HOLD_TAPL";
-            hold-trigger-key-positions = <RIGHT_ROWS_012 43>;
+            hold-trigger-key-positions = <RIGHT_ROWS_012 43 44>;
             hold-trigger-on-release; // https://github.com/zmkfirmware/zmk/pull/1423
             #binding-cells = <2>; bindings = <&kp>, <&kp>;
             flavor = "balanced"; tapping-term-ms = <400>;
@@ -64,7 +64,7 @@
         rh_pht: homerow_right {
             compatible = "zmk,behavior-hold-tap";
             label = "POSITIONAL_HOLD_TAPR";
-            hold-trigger-key-positions = <LEFT_ROWS_012 40>;
+            hold-trigger-key-positions = <LEFT_ROWS_012 39 40>;
             hold-trigger-on-release;
             #binding-cells = <2>; bindings = <&kp>, <&kp>;
             //flavor = "hold-preferred"; quick-tap-ms = <200>; tapping-term-ms = <400>;
